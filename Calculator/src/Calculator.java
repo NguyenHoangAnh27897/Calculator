@@ -52,8 +52,8 @@ public class Calculator extends JFrame {
 					"Copy", KeyEvent.VK_C), paste = new JMenuItem("Paste",
 					KeyEvent.VK_V), about = new JMenuItem("About",
 					KeyEvent.VK_A);
-	ImageIcon imgcopy = new ImageIcon("Icon/Copy.gif"),
-			imgpaste = new ImageIcon("Icon/Paste.gif");
+	ImageIcon imgcop = new ImageIcon("Icon/Copy.gif"), imgpas = new ImageIcon(
+			"Icon/Paste.gif"), imgabout = new ImageIcon("Icon/about.gif");
 	ButtonGroup btnGr = new ButtonGroup(), btnSel = new ButtonGroup(),
 			btnSe = new ButtonGroup();;
 	double dMemo = 0, dCalcu = 0;
@@ -83,9 +83,9 @@ public class Calculator extends JFrame {
 				ActionEvent.ALT_MASK));
 		about.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,
 				ActionEvent.ALT_MASK));
-		copy.setIcon(imgcopy);
-		paste.setIcon(imgpaste);
-		// about.setIcon(imabout);
+		copy.setIcon(imgcop);
+		paste.setIcon(imgpas);
+		about.setIcon(imgabout);
 		inittalizeMenu();
 		initScien();
 		initStand();
@@ -179,7 +179,7 @@ public class Calculator extends JFrame {
 				// TODO Auto-generated method stub
 				JButton btnNumber = (JButton) arg0.getSource();
 				String sNumber = btnNumber.getText();
-				String sCurrent = txtIn.getText();	
+				String sCurrent = txtIn.getText();
 				if (fAppend == true) {
 					if (sCurrent.equals(0)) {
 						txtIn.setText(sNumber);
@@ -255,6 +255,19 @@ public class Calculator extends JFrame {
 		btnStand[3][4].addActionListener(actCal);
 		btnStand[1][4].addActionListener(actCal);
 		btnStand[1][3].addActionListener(actCal);
+		btnScien[1][2].addActionListener(actCal);
+		btnScien[2][2].addActionListener(actCal);
+		btnScien[3][2].addActionListener(actCal);
+		btnScien[4][3].addActionListener(actCal);
+		btnScien[0][2].addActionListener(actCal);
+		btnScien[3][0].addActionListener(actCal);
+		btnScien[1][3].addActionListener(actCal);
+		btnScien[3][3].addActionListener(actCal);
+		btnScien[2][3].addActionListener(actCal);
+		btnScien[1][4].addActionListener(actCal);
+		btnScien[3][4].addActionListener(actCal);
+		btnScien[2][4].addActionListener(actCal);
+		btnScien[4][4].addActionListener(actCal);
 
 		ActionListener acEqual = new ActionListener() {
 
@@ -264,7 +277,7 @@ public class Calculator extends JFrame {
 				if (sCal.equals("+")) {
 					double dCal = Double.parseDouble(txtIn.getText());
 					double result = dCalcu + dCal;
-					txtIn.setText(String.format("" + result));
+					txtIn.setText("" + result);
 					fAppend = false;
 				}
 				if (sCal.equals("-")) {
@@ -282,25 +295,113 @@ public class Calculator extends JFrame {
 				if (sCal.equals("/")) {
 					double dCal = Double.parseDouble(txtIn.getText());
 					double result = dCalcu / dCal;
-					txtIn.setText(String.format("%.2f", result));
+					txtIn.setText("" + result);
 					fAppend = false;
 				}
 				if (sCal.equals("1/x")) {
-					double dCal = Double.parseDouble(txtIn.getText());
-					double result = 1 / dCal;
-					txtIn.setText(String.format("%f", result));
-					;
+					double result = 1 / dCalcu;
+					txtIn.setText("" + result);
 					fAppend = false;
 				}
 				if (sCal.equals("sqrt")) {
-					double dCal = Double.parseDouble(txtIn.getText());
-					double result = Math.sqrt(dCal);
-					txtIn.setText(String.format("%f", result));
+					double result = Math.sqrt(dCalcu);
+					txtIn.setText("" + result);
 					fAppend = false;
 				}
 				if (sCal.equals("+/-")) {
+					txtIn.setText("" + (-dCalcu));
+					fAppend = false;
+				}
+				if (rad.isSelected()) {
+					if (sCal.equals("sin")) {
+						double result = Math.sin(dCalcu);
+						txtIn.setText("" + result);
+						fAppend = false;
+					}
+					if (sCal.equals("cos")) {
+						double result = Math.cos(dCalcu);
+						txtIn.setText("" + result);
+						fAppend = false;
+					}
+					if (sCal.equals("tan")) {
+						double result = Math.tan(dCalcu);
+						txtIn.setText("" + result);
+						fAppend = false;
+					}
+				}
+				if (deg.isSelected()) {
+					if (sCal.equals("sin")) {
+						double dTra = (dCalcu * Math.PI) / 180;
+						double result = Math.sin(dTra);
+						txtIn.setText("" + result);
+						fAppend = false;
+					}
+					if (sCal.equals("cos")) {
+						double dTra = (dCalcu * Math.PI) / 180;
+						double result = Math.cos(dTra);
+						txtIn.setText("" + result);
+						fAppend = false;
+					}
+					if (sCal.equals("tan")) {
+						double dTra = (dCalcu * Math.PI) / 180;
+						double result = Math.tan(dTra);
+						txtIn.setText("" + result);
+						fAppend = false;
+					}
+				}
+				if (sCal.equals("log")) {
+					double result = Math.log10(dCalcu);
+					txtIn.setText("" + result);
+					fAppend = false;
+				}
+				if (sCal.equals("ln")) {
+					double result = Math.log(dCalcu);
+					txtIn.setText("" + result);
+					fAppend = false;
+				}
+				if (sCal.equals("PI")) {
+					double result = Math.PI;
+					txtIn.setText("" + result);
+					fAppend = false;
+				}
+				if (sCal.equals("x^2")) {
+					double result = dCalcu * dCalcu;
+					txtIn.setText("" + result);
+					fAppend = false;
+				}
+				if (sCal.equals("x^3")) {
+					double result = dCalcu * dCalcu * dCalcu;
+					txtIn.setText("" + result);
+					fAppend = false;
+				}
+				if (sCal.equals("x^y")) {
 					double dCal = Double.parseDouble(txtIn.getText());
-					txtIn.setText("" + (-dCal));
+					double result = Math.pow(dCalcu, dCal);
+					txtIn.setText("" + result);
+					fAppend = false;
+				}
+				if (sCal.equals("x^1/y")) {
+					double dCal = Double.parseDouble(txtIn.getText());
+					double result = Math.pow(dCalcu, 1 / dCal);
+					txtIn.setText("" + result);
+					fAppend = false;
+				}
+				if (sCal.equals("x^1/3")) {
+					double result = Math.cbrt(dCalcu);
+					txtIn.setText("" + result);
+					fAppend = false;
+				}
+				if (sCal.equals("10^x")) {
+					double result = Math.pow(10, dCalcu);
+					txtIn.setText("" + result);
+					fAppend = false;
+				}
+				if (sCal.equals("n!")) {
+					double result = 1;
+					for (int i = 1; i <= dCalcu; i++) {
+						result = result * i;
+					}
+					txtIn.setText("" + result);
 					fAppend = false;
 				}
 			}
@@ -338,7 +439,7 @@ public class Calculator extends JFrame {
 				String s1 = txtIn.getText();
 				int iSub = s1.length();
 				if (iSub > 1) {
-					String s2 = s1.substring(0,iSub-1);
+					String s2 = s1.substring(0, iSub - 1);
 					txtIn.setText(s2);
 				}
 				if (iSub == 1) {
@@ -348,7 +449,7 @@ public class Calculator extends JFrame {
 			}
 		};
 		btnStand[1][0].addActionListener(actSub);
-		
+
 	}
 
 	String[][] sStard = { { "MC", "MR", "MS", "M+", "M-" },
