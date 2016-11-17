@@ -268,6 +268,7 @@ public class Calculator extends JFrame {
 		btnScien[3][4].addActionListener(actCal);
 		btnScien[2][4].addActionListener(actCal);
 		btnScien[4][4].addActionListener(actCal);
+		btnScien[4][2].addActionListener(actCal);
 
 		ActionListener acEqual = new ActionListener() {
 
@@ -401,6 +402,12 @@ public class Calculator extends JFrame {
 					for (int i = 1; i <= dCalcu; i++) {
 						result = result * i;
 					}
+					txtIn.setText("" + result);
+					fAppend = false;
+				}
+				if (sCal.equals("Mod")) {
+					double dCal = Double.parseDouble(txtIn.getText());
+					double result = dCalcu % dCal;
 					txtIn.setText("" + result);
 					fAppend = false;
 				}
