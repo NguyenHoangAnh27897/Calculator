@@ -32,7 +32,7 @@ import javax.swing.KeyStroke;
  * @author Anh Nguyen T150510
  */
 public class Calculator extends JFrame {
-	JTextField txtIn = new JTextField(), txtIn00 = new JTextField();
+	JTextField txtIn = new JTextField();
 	JPanel panbox = new JPanel(), panPr00 = new JPanel(),
 			panPr01 = new JPanel();
 	JRadioButton deg = new JRadioButton("Degrees"), rad = new JRadioButton(
@@ -125,10 +125,10 @@ public class Calculator extends JFrame {
 		btnSe.add(word);
 		btnSe.add(bit);
 		panPr00.add(hex);
-		panPr00.add(oct);
 		panPr00.add(dec);
+		panPr00.add(oct);
 		panPr00.add(bin);
-		oct.setSelected(true);
+		dec.setSelected(true);
 		panPr00.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
 		panPr01.add(qword);
 		panPr01.add(dword);
@@ -203,6 +203,27 @@ public class Calculator extends JFrame {
 		btnStand[4][2].addActionListener(actNumber);
 		btnStand[5][0].addActionListener(actNumber);
 		btnStand[5][1].addActionListener(actNumber);
+		
+		ActionListener actProgram = new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					JButton btnNumber = (JButton) arg0.getSource();
+					String sNumber = btnNumber.getText();
+					String sCurrent = txtIn.getText();
+					if (fAppend == true) {
+						if (sCurrent.equals(0)) {
+							txtIn.setText(sNumber);
+						} else {
+							txtIn.setText(sCurrent + sNumber);
+						}
+					} else {
+						txtIn.setText(sNumber);
+						fAppend = true;
+					}
+				}
+			};
 
 		ActionListener actMemo = new ActionListener() {
 
@@ -269,6 +290,7 @@ public class Calculator extends JFrame {
 		btnScien[2][4].addActionListener(actCal);
 		btnScien[4][4].addActionListener(actCal);
 		btnScien[4][2].addActionListener(actCal);
+		btnProg[0][1].addActionListener(actCal);
 
 		ActionListener acEqual = new ActionListener() {
 
@@ -457,6 +479,109 @@ public class Calculator extends JFrame {
 		};
 		btnStand[1][0].addActionListener(actSub);
 
+		hex.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				btnStand[1][4].setEnabled(false);
+				btnStand[2][4].setEnabled(false);
+				btnStand[3][4].setEnabled(false);
+				btnStand[5][1].setEnabled(false);
+				btnProg[0][2].setEnabled(true);
+				btnProg[1][2].setEnabled(true);
+				btnProg[2][2].setEnabled(true);
+				btnProg[3][2].setEnabled(true);
+				btnProg[4][2].setEnabled(true);
+				btnProg[5][2].setEnabled(true);
+				btnStand[2][1].setEnabled(true);
+				btnStand[2][2].setEnabled(true);
+				btnStand[2][0].setEnabled(true);
+				btnStand[3][0].setEnabled(true);
+				btnStand[3][1].setEnabled(true);
+				btnStand[3][2].setEnabled(true);
+				btnStand[4][1].setEnabled(true);
+				btnStand[4][2].setEnabled(true);
+			}
+		});
+
+		dec.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				btnStand[1][4].setEnabled(false);
+				btnStand[2][4].setEnabled(false);
+				btnStand[3][4].setEnabled(false);
+				btnStand[5][1].setEnabled(false);
+				btnProg[0][2].setEnabled(false);
+				btnProg[1][2].setEnabled(false);
+				btnProg[2][2].setEnabled(false);
+				btnProg[3][2].setEnabled(false);
+				btnProg[4][2].setEnabled(false);
+				btnProg[5][2].setEnabled(false);
+				btnStand[2][1].setEnabled(true);
+				btnStand[2][2].setEnabled(true);
+				btnStand[2][0].setEnabled(true);
+				btnStand[3][0].setEnabled(true);
+				btnStand[3][1].setEnabled(true);
+				btnStand[3][2].setEnabled(true);
+				btnStand[4][1].setEnabled(true);
+				btnStand[4][2].setEnabled(true);
+			}
+		});
+
+		oct.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				btnStand[1][4].setEnabled(false);
+				btnStand[2][4].setEnabled(false);
+				btnStand[3][4].setEnabled(false);
+				btnStand[5][1].setEnabled(false);
+				btnProg[0][2].setEnabled(false);
+				btnProg[1][2].setEnabled(false);
+				btnProg[2][2].setEnabled(false);
+				btnProg[3][2].setEnabled(false);
+				btnProg[4][2].setEnabled(false);
+				btnProg[5][2].setEnabled(false);
+				btnStand[2][1].setEnabled(false);
+				btnStand[2][2].setEnabled(false);
+				btnStand[2][0].setEnabled(true);
+				btnStand[3][0].setEnabled(true);
+				btnStand[3][1].setEnabled(true);
+				btnStand[3][2].setEnabled(true);
+				btnStand[4][1].setEnabled(true);
+				btnStand[4][2].setEnabled(true);
+			}
+		});
+
+		bin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				btnStand[1][4].setEnabled(false);
+				btnStand[2][4].setEnabled(false);
+				btnStand[3][4].setEnabled(false);
+				btnStand[5][1].setEnabled(false);
+				btnProg[0][2].setEnabled(false);
+				btnProg[1][2].setEnabled(false);
+				btnProg[2][2].setEnabled(false);
+				btnProg[3][2].setEnabled(false);
+				btnProg[4][2].setEnabled(false);
+				btnProg[5][2].setEnabled(false);
+				btnStand[2][0].setEnabled(false);
+				btnStand[2][1].setEnabled(false);
+				btnStand[2][2].setEnabled(false);
+				btnStand[3][0].setEnabled(false);
+				btnStand[3][1].setEnabled(false);
+				btnStand[3][2].setEnabled(false);
+				btnStand[4][1].setEnabled(false);
+				btnStand[4][2].setEnabled(false);
+			}
+		});
 	}
 
 	String[][] sStard = { { "MC", "MR", "MS", "M+", "M-" },
@@ -555,6 +680,12 @@ public class Calculator extends JFrame {
 			panPr00.setVisible(false);
 			panPr01.setVisible(false);
 			this.setSize(530, 460);
+			if (btnStand[1][4] != null) {
+				btnStand[1][4].setEnabled(true);
+				btnStand[2][4].setEnabled(true);
+				btnStand[3][4].setEnabled(true);
+				btnStand[5][1].setEnabled(true);
+			}
 		} else if (mode == 1) {
 			panScien.setVisible(false);
 			panProg.setVisible(false);
@@ -565,6 +696,10 @@ public class Calculator extends JFrame {
 			panPr00.setVisible(false);
 			panPr01.setVisible(false);
 			this.setSize(270, 460);
+			btnStand[1][4].setEnabled(true);
+			btnStand[2][4].setEnabled(true);
+			btnStand[3][4].setEnabled(true);
+			btnStand[5][1].setEnabled(true);
 		} else if (mode == 3) {
 			panPr00.setSize(80, 140);
 			panPr00.setLocation(10, 100);
@@ -580,6 +715,17 @@ public class Calculator extends JFrame {
 			panProg.setBounds(100, 100, x + 100, y);
 			panStand.setBounds(260, 100, x + 100, y);
 			this.setSize(520, 460);
+			btnStand[1][4].setEnabled(false);
+			btnStand[2][4].setEnabled(false);
+			btnStand[3][4].setEnabled(false);
+			btnStand[5][1].setEnabled(false);
+			btnProg[0][2].setEnabled(false);
+			btnProg[1][2].setEnabled(false);
+			btnProg[2][2].setEnabled(false);
+			btnProg[3][2].setEnabled(false);
+			btnProg[4][2].setEnabled(false);
+			btnProg[5][2].setEnabled(false);
+
 		}
 	}
 
