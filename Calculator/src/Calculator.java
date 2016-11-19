@@ -203,6 +203,13 @@ public class Calculator extends JFrame {
 		btnStand[4][2].addActionListener(actNumber);
 		btnStand[5][0].addActionListener(actNumber);
 		btnStand[5][1].addActionListener(actNumber);
+		btnProg[0][2].addActionListener(actNumber);
+		btnProg[1][2].addActionListener(actNumber);
+		btnProg[2][2].addActionListener(actNumber);
+		btnProg[3][2].addActionListener(actNumber);
+		btnProg[4][2].addActionListener(actNumber);
+		btnProg[5][2].addActionListener(actNumber);
+		
 		
 		ActionListener actProgram = new ActionListener() {
 
